@@ -1,0 +1,155 @@
+/* 重置基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 页面最外层容器 */
+.wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+/* 标题区样式 */
+.wrapper header {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    color: #FFFFFF;
+    background-color: #00AA91;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    font-size: 18px;
+    text-align: center;
+}
+
+.wrapper header i {
+    cursor: pointer;
+}
+
+/* 侧边菜单样式 */
+.sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    top: 50px; /* 与header高度一致 */
+    left: 0;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sidebar ul li:hover {
+    background-color: #444;
+}
+
+/* 侧边菜单显示时 */
+.sidebar.show {
+    transform: translateX(0);
+}
+
+/* 内容区域样式 */
+main {
+    margin-left: 220px; /* 为侧边菜单留出空间 */
+    padding: 70px 20px 20px; /* 顶部padding以避免被header遮挡 */
+    flex-grow: 1;
+}
+
+section {
+    display: none; /* 初始隐藏所有section */
+    margin-bottom: 20px;
+}
+
+section.active {
+    display: block; /* 仅显示激活的section */
+}
+
+section h2 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.search-container {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group button {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.form-group button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

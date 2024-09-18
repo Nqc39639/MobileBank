@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.PayInfoMapper">
+    <select id="selectPayInfoByPayAccountId" parameterType="integer" resultType="payInfo">
+        select id,
+               payAccountId,
+               target,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from payinfo
+        where payAccountId = #{payAccountId};
+    </select>
+    <select id="selectPayInfoByPayAccountIdAndDateRange" resultType="payInfo">
+        select id,
+               payAccountId,
+               target,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from payinfo
+        where payAccountId = #{payAccountId}
+          and payDate between #{startDate} and #{endDate};
+    </select>
+    <insert id="addPayInfo">
+
+    </insert>
+</mapper>

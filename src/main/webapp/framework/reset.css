@@ -1,0 +1,20 @@
+ul{
+	/* 去掉无序列表项目中黑点 */
+	list-style: none;
+}
+/* 星号代表所有标签 */
+*{
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+a{
+	/* 去掉超级链接的下划线 */
+	text-decoration: none;
+	/* 修改超级链接的文字颜色 */
+	color: black;
+}
+body,html{
+	height: 100%;
+	width:100%;
+}

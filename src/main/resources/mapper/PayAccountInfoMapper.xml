@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.PayAccountInfoMapper">
+    <select id="selectPayAccountInfoByBankCardID" parameterType="string" resultType="payAccountInfo">
+        select id,
+               userId,
+               bankCardID,
+               password,
+               firstBalance,
+               balance,
+               createDate,
+               createAddress,
+               status,
+               comment
+        from payaccountinfo
+        where bankCardID = #{bankCardID}
+          and status = 1;
+    </select>
+    <select id="selectPayAccountInfoById" parameterType="integer" resultType="payAccountInfo">
+        select id,
+               userId,
+               bankCardID,
+               password,
+               firstBalance,
+               balance,
+               createDate,
+               createAddress,
+               status,
+               comment
+        from payaccountinfo
+        where id = #{id}
+          and status = 1;
+    </select>
+    <select id="selectPayeeAccountInfoById" parameterType="integer" resultType="map">
+        select p.id,
+               p.userId,
+               p.bankCardID,
+               p.balance,
+               p.status as payAccountInfoStatus,
+               p.comment,
+               u.account,
+               u.realname,
+               u.sex,
+               u.telephone,
+               u.IDCard,
+               u.birthPlace,
+               u.address,
+               u.creditGrade,
+               u.status as userInfoStatus
+        from payaccountinfo p,
+             userinfo u
+        where p.id = #{id}
+          and u.id = p.userId;
+    </select>
+    <insert id="addPayAccountInfo">
+
+    </insert>
+    <select id="selectPayAccountInfoByUserId" parameterType="integer" resultType="payAccountInfo">
+        select id,
+               userId,
+               bankCardID,
+               password,
+               firstBalance,
+               balance,
+               createDate,
+               createAddress,
+               status,
+               comment
+        from payaccountinfo
+        where userId = #{userId}
+          and status = 1;
+    </select>
+    <update id="deletePayAccountInfo">
+        update payaccountinfo
+        set status=0
+        where id = #{id};
+    </update>
+    <update id="updatePayAccountBalance">
+        update payaccountinfo
+        set balance=#{balance}
+        where id = #{id};
+    </update>
+    <update id="updatePayAccountPassword">
+        update payaccountinfo
+        set password=#{password}
+        where bankCardID = #{bankCardID};
+    </update>
+
+</mapper>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.UserLogMapper">
+    <!--    <resultMap id="tUsersResultMap" type="com.mobileBank.pojo.UserLogController">-->
+    <!--        <result column="user_name" property="user_name" />-->
+    <!--    </resultMap>-->
+
+    <!-- 添加用户日志 -->
+    <insert id="addUserLog" parameterType="userLog" useGeneratedKeys="true" keyProperty="id">
+        insert into userlog(userId, type, operationTime, reserveTime
+        <if test="comment != '' and comment != null">,comment</if>)
+        values (#{userId}, #{type}, #{operationTime}, #{reserveTime}
+        <if test="comment != '' and comment != null">,
+        #{comment}</if>);
+    </insert>
+    <!-- 管理员查询所有用户日志 -->
+    <select id="selectAllUserLog" resultType="userLog">
+        select id,
+               userId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from userlog;
+    </select>
+    <!-- 管理员通过条件查询用户日志 -->
+    <select id="selectUserLogBySearch" resultType="userLog">
+        select *
+        from userlog
+        <where>
+            <if test="type != null and type !=''">
+                and type like concat('%',
+                #{type},
+                '%'
+                )
+            </if>
+            <if test="date_min != 0 and date_min != null">
+                and operationTime &gt;=
+                #{date_min}
+            </if>
+            <if test="date_max != 0 and date_max != null">
+                and operationTime &lt;=
+                #{date_max}
+            </if>
+            <if test="comment != null and comment !=''">
+                and comment like concat('%',
+                #{comment},
+                '%'
+                )
+            </if>
+        </where>
+        ;
+    </select>
+    <!-- 管理员查询用户日志 -->
+    <select id="selectUserLogByUserId" parameterType="integer" resultType="userLog">
+        select id,
+               userId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from userlog
+        where userId = #{userId};
+    </select>
+    <!-- 管理员通过operationTime查询用户日志 -->
+    <select id="selectUserLogByOperationTimeRange" resultType="userLog">
+        select id,
+               userId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from userlog
+        where operationTime between #{startDate} and #{endDate};
+    </select>
+</mapper>

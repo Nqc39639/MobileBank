@@ -1,0 +1,36 @@
+.wrapper{
+    height: 100%;
+    width: 100%;
+}
+.wrapper .formbox{
+    width: 100%;
+    margin-top: 12vw;
+    height: 50%;
+    box-sizing: border-box;
+}
+.wrapper .formbox li{
+    display: flex;
+    width: 100%;
+    height: 30%;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper .formbox li .content i{
+    color: #00AA91;
+}
+.wrapper .button_index{
+    width: 100%;
+    padding: 4vw 3vw 0 3vw;
+    box-sizing: border-box;
+}
+.wrapper .button_index button{
+    width: 100%;
+    height: 10vw;
+    font-size: 3.8vw;
+    font-weight: 700;
+    background-color: #00AA91;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+}

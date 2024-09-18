@@ -1,0 +1,121 @@
+/* 整个页面整体样式 */
+.wrapper{
+    /* 让div高度和body一样高 */
+    height: 100%;
+    /* 让div的宽度和body一样宽 */
+    width: 100%;
+    /* 调试样式看边界 */
+    /* border: 1px solid black; */
+    /* 整体背景颜色 */
+    background-color: #F5F5F5;
+}
+/* 设置抬头区的样式 */
+.wrapper header{
+    /* header和外围div一样宽 */
+    width: 100%;
+    /* 该区域的高度 */
+    /* 高度单位是vw，1vw代表视口宽度的1% */
+    height:24vw;
+    /* border:1px solid red; */
+    /* 使用弹性布局样式 */
+    display: flex;
+    /* 实现文字和字体标签水平居中 */
+    justify-content: center;
+    /* 实现文字和字体标签垂直居中 */
+    align-items: center;
+    /* 设置字号 */
+    font-size: 8vw;
+    /* 背景颜色 */
+    background-color: #00AA91;
+    /* 文字颜色 */
+    color: #FFFFFF;
+}
+.wrapper .menu{
+    width:100%;
+    /* 使用弹性布局 */
+    display: flex;
+    /* 让菜单项分散对齐，每项之间保持一定的距离 */
+    justify-content: space-around;
+    /* 分行显示 */
+    flex-wrap: wrap;
+    align-content: center;
+    /* 菜单区域的高度 */
+    height: 36vw;
+    /* 辅助查看位置的边框 */
+    /* border: 1px solid black; */
+    /* 菜单区距离抬头区的距离 */
+    margin-top: 6vw;
+    /* 菜单区背景颜色 */
+    background-color: #FFFFFF;
+}
+.wrapper .menu li{
+    /* 菜单项目的宽度 */
+    width:22vw;
+    /* 辅助查看位置的边框 */
+    /* 	border: 1px solid black; */
+    /* 使用弹性布局 */
+    display: flex;
+    /* 改变弹性布局方向 */
+    flex-direction: column;
+    /* 弹性布局方向为column的情况下，居中采用align-items */
+    align-items: center;
+    /* 使用上下内边距 */
+    padding: 1vw 0;
+}
+/* 智能提醒区的样式 */
+.wrapper .special{
+    width: 100%;
+    display: flex;
+    /* border: 1px solid black; */
+    /* 让文本区和图形区分散对齐，之间保持一定的距离 */
+    justify-content: space-around;
+    padding: 2vw 0;
+    margin-top: 6vw;
+    /* 内部元素在div里垂直居中的效果 */
+    align-items: center;
+    /* 单独加上边框和下边框 */
+    border-top: 1px solid #E7E7E7;
+    border-bottom: 1px solid #E7E7E7;
+    background-color: #FFFFFF;
+}
+/* 智能提醒区左侧上方文字样式 */
+.wrapper .special .text h3{
+    padding: 2vw 0;
+}
+.wrapper .special .subText{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 2vw 0;
+    color: #999999;
+    /* 加粗效果 */
+    font-weight: bolder;
+
+}
+.wrapper .special .go{
+    /* border: 1px solid black; */
+    width: 12vw;
+    height: 12vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6vw;
+    /* 把正方形变成圆形 */
+    border-radius: 100%;
+    background-color: #00AA91;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+.wrapper .banner{
+    width: 100%;
+    /* 背景图片样式 */
+    background-image: url('../images/16pic_1565148_b.jpg');
+    /* div的高度 */
+    height: 60vw;
+    /* 让背景图片适应背景区域大小 */
+    background-size: cover;
+    /* 拉开与智能提醒区的距离 */
+    margin-top: 6vw;
+    /* 底部功能区遮挡 */
+    padding-bottom: 14vw;
+}

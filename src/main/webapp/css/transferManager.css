@@ -1,0 +1,41 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: #F5F5F5;
+}
+.wrapper header{
+    width: 100%;
+    height: 12vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5vw 0 1vw;
+    box-sizing: border-box;
+    color: #ffffff;
+    background-color: #00AA91;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 1000;
+    font-size: 4.8vw;
+}
+.wrapper .transferManagerList{
+    width: 100%;
+    margin-top: 14vw;
+}
+.wrapper .transferManagerList li{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid #DDDDDD;
+    color: #666666;
+    background-color: #ffffff;
+}
+.wrapper .transferManagerList li p{
+    font-size: 4.8vw;
+    padding: 1vw 2vw 2vw 2vw;
+}
+.wrapper .transferManagerList li i{
+    padding: 2vw;
+    font-size: 7vw;
+}

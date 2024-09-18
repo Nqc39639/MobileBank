@@ -1,0 +1,19 @@
+div{
+	/* 边框 */
+	border: 3px solid red;
+	/* 取相对高度 */
+	/* 让div的高度和body一样高 */
+	height: 100%;
+}
+body{
+	/* 边框 */
+	border: 3px solid green;
+	/* 让body的高度和html一样高 */
+	/* height: 100%; */
+}
+html{
+	/* 边框 */
+	border: 3px solid blue;
+	/* 让html的高度和浏览器窗口一样高 */
+	/* height: 100%; */
+}

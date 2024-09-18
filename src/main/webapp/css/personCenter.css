@@ -1,0 +1,137 @@
+/* 重置基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+/* 标题区样式 */
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	/* border: 1px solid black; */
+    justify-content: center; /* 水平居中 */
+	display: flex;
+	/* 平均分配字体标签和两个p标签之间的距离 */
+	/* justify-content: space-between; */
+	/* 垂直居中效果 */
+	align-items: center;
+	/* 边框盒子效果 */
+	box-sizing: border-box;
+	/* 加内边距，拉开两边文字和header边界的距离 */
+	padding: 0 2vw 0 1vw;
+	color: #FFFFFF;
+    text-align: center;
+	background-color: #00AA91;
+	/* 使用固定定位 */
+	position: fixed;
+	top: 0;
+	left:0;
+	/* 保证标题永远都在最上层 */
+	z-index: 1000;
+	font-size: 4.8vw;
+}
+
+/* 确保h1标签占满整个header区域以实现水平居中 */
+.wrapper header i {
+    position: absolute;
+    right: 1vw;
+    font-size: 4vw;
+}
+/* 页面最外层容器 */
+.wrapper {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+.wrapper .account{
+	width: 100%;
+    margin-top: 12vw;
+	padding: 4vw 3vw 0 3vw;
+	box-sizing: border-box;
+}
+.wrapper .account button{
+	width: 100%;
+	padding: 4vw 3vw 0 3vw;
+	box-sizing: border-box;
+}
+.personal-info .info-details button{
+    width: 100%;
+	padding: 4vw 3vw 0 3vw;
+	box-sizing: border-box;
+}
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* 抬头区样式 */
+header {
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+#save-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* 各个部分的样式 */
+section {
+    margin: 20px 0;
+}
+
+section h2 {
+    font-size: 20px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+div.account-details,
+div.info-details,
+div.balance-details,
+div.assets-details,
+div.security-details,
+div.branches-details {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* 垂直居中效果 */
+	align-items: center;
+}
+
+div.account-details p,
+div.info-details p,
+div.balance-details p,
+div.assets-details p,
+div.security-details p,
+div.branches-details p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+/* 安全中心和我的网点链接样式 */
+div.security-details p,
+div.branches-details p {
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* 底部间距 */
+footer {
+    margin-top: 20px;
+}

@@ -1,0 +1,55 @@
+/* 整体页面布局样式 */
+.wrapper{
+	/* 让div高度和body一样高 */
+	height: 100%;
+	/* 让div的宽度和body一样宽 */
+	width: 100%;
+	/* 调试样式看边界 */
+	/* border: 1px solid black; */
+	background-color: #F5F5F5;
+}
+/* 标题区样式 */
+.wrapper header{
+	width: 100%;
+	height: 12vw;
+	/* border: 1px solid black; */
+	display: flex;
+	/* 字体标签和两个p之间保持相等的距离 */
+	justify-content: space-between;
+	/* 垂直居中效果 */
+	align-items: center;
+	/* 内边距 */
+	padding: 0 5vw 0 1vw;
+	/* 边框盒子模型样式保持div在使用了内边距情况下宽度不变 */
+	box-sizing: border-box;
+	color: #FFFFFF;
+	background-color: #00AA91;
+	/* 使用固定定位 */
+	position: fixed;
+	top: 0;
+	left:0;
+	/* 保证标题永远都在最上层 */
+	z-index: 1000;
+	font-size: 4.8vw;
+}
+/* 功能列表区样式 */
+.wrapper .transferManageList{
+	width: 100%;
+	margin-top: 12vw;
+}
+.wrapper .transferManageList li{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	border-bottom: 3px solid #DDDDDD;
+	color: #666666;
+	background-color: #FFFFFF;
+	
+}
+.wrapper .transferManageList li p{
+	font-size: 4.8vw;
+	padding: 1vw 2vw 2vw 2vw;
+}
+.wrapper .transferManageList li i{
+	padding: 2vw;
+}

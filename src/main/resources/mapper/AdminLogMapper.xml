@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.AdminLogMapper">
+    <!--    <resultMap id="tUsersResultMap" type="com.mobileBank.pojo.AdminLogController">-->
+    <!--        <result column="user_name" property="user_name" />-->
+    <!--    </resultMap>-->
+
+    <!-- 添加管理员日志 -->
+    <insert id="addAdminLog" parameterType="adminLog" useGeneratedKeys="true" keyProperty="id">
+        insert into adminlog(adminId, type, operationTime, reserveTime
+        <if test="comment != '' and comment != null">,comment</if>)
+        values (#{adminId}, #{type}, #{operationTime}, #{reserveTime}
+        <if test="comment != '' and comment != null">,
+        #{comment}</if>);
+    </insert>
+    <!-- 查询所有管理员日志 -->
+    <select id="selectAllAdminLog" resultType="adminLog">
+        select id,
+               adminId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from adminlog;
+    </select>
+    <!-- 管理员通过条件查询用户日志 -->
+    <select id="selectAdminLogBySearch" resultType="adminLog">
+        select *
+        from adminlog
+        <where>
+            <if test="type != null and type !=''">
+                and type like concat('%',
+                #{type},
+                '%'
+                )
+            </if>
+            <if test="date_min != 0 and date_min != null">
+                and operationTime &gt;=
+                #{date_min}
+            </if>
+            <if test="date_max != 0 and date_max != null">
+                and operationTime &lt;=
+                #{date_max}
+            </if>
+            <if test="comment != null and comment !=''">
+                and comment like concat('%',
+                #{comment},
+                '%'
+                )
+            </if>
+        </where>
+        ;
+    </select>
+    <!-- 查询管理员日志 -->
+    <select id="selectAdminLogByAdminId" parameterType="integer" resultType="adminLog">
+        select id,
+               adminId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from adminlog
+        where adminId = #{adminId};
+    </select>
+    <!-- 通过operationTime查询管理员日志 -->
+    <select id="selectAdminLogByOperationTimeRange" resultType="adminLog">
+        select id,
+               adminId,
+               type,
+               operationTime,
+               reserveTime,
+               comment
+        from adminlog
+        where operationTime between #{startDate} and #{endDate};
+    </select>
+</mapper>

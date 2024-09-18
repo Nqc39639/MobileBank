@@ -1,0 +1,26 @@
+/* 底部功能区 */
+.wrapper .footer{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	height: 14vw;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	align-items: center;
+	background-color: #fff;
+	border-top: solid 1px #DDD;
+}
+.wrapper .footer li{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: #999999;
+}
+.wrapper .footer li p{
+	font-size: 2.8vw;
+}
+.wrapper .footer li i{
+	font-size: 5vw;
+}

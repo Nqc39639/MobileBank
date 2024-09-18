@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.UserInfoMapper">
+    <!--    <resultMap id="tUsersResultMap" type="com.mobileBank.pojo.UserInfoController">-->
+    <!--        <result column="user_name" property="user_name" />-->
+    <!--    </resultMap>-->
+
+    <!-- 用户注册服务 -->
+    <insert id="registerUserInfo" parameterType="userInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into userinfo(account, password, realname, sex, IDCard, birthPlace
+        <if test="telephone != '' and telephone != null">,telephone</if>
+        <if test="address != '' and address != null">,address</if>
+        <if test="creditGrade != null">,creditGrade</if>
+        <if test="status != null">,status</if>)
+        values (#{account},#{password},#{realname},#{sex},#{IDCard},#{birthPlace}
+        <if test="telephone != null and telephone != ''">,
+        #{telephone}</if>
+        <if test="address != '' and address != null">,
+        #{address}</if>
+        <if test="creditGrade != null">,
+        #{creditGrade}</if>
+        <if test="status != null">,
+        #{status}</if>);
+    </insert>
+    <!-- 管理员添加用户 -->
+    <insert id="addUserInfo" parameterType="userInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into userinfo(account, password, realname, sex, IDCard, birthPlace
+        <if test="telephone != '' and telephone != null">,telephone</if>
+        <if test="address != '' and address != null">,address</if>
+        <if test="creditGrade != null">,creditGrade</if>
+        <if test="status != null">,status</if>)
+        values (#{account},#{password},#{realname},#{sex},#{IDCard},#{birthPlace}
+        <if test="telephone != null and telephone != ''">,
+        #{telephone}</if>
+        <if test="address != '' and address != null">,
+        #{address}</if>
+        <if test="creditGrade != null">,
+        #{creditGrade}</if>
+        <if test="status != null">,
+        #{status}</if>);
+    </insert>
+    <!-- 用户修改个人信息服务 -->
+    <update id="updateUserInfo">
+        update userinfo
+        <set>
+            <if test="account != '' and account != null">account
+            =
+            #{account},
+            </if>
+            <if test="password != '' and password != null">password
+            =
+            #{password},
+            </if>
+            <if test="realname != '' and realname != null">realname
+            =
+            #{realname},
+            </if>
+            <if test="sex != null">sex
+            =
+            #{sex},
+            </if>
+            <if test="telephone != '' and telephone != null">telephone
+            =
+            #{telephone},
+            </if>
+            <if test="IDCard != '' and IDCard != null">IDCard
+            =
+            #{IDCard},
+            </if>
+            <if test="birthPlace != '' and birthPlace != null">birthPlace
+            =
+            #{birthPlace},
+            </if>
+            <if test="address != '' and address != null">address
+            =
+            #{address},
+            </if>
+            <if test="creditGrade != null">creditGrade
+            =
+            #{creditGrade},
+            </if>
+            <if test="status != null">status
+            =
+            #{status}
+            </if>
+        </set>
+        where id=#{id};
+    </update>
+    <!-- 用户注销服务【伪删除】 -->
+    <update id="deleteUserInfo">
+        update userinfo
+        set status = 0
+        where id = #{id};
+    </update>
+    <!-- 管理员伪删除用户 -->
+    <update id="updateStatusNormalUser">
+        update userinfo
+        set status = 0
+        where id in (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>
+        );
+    </update>
+    <!-- 管理员恢复用户 -->
+    <update id="updateStatusAbnormalUser">
+        update userinfo
+        set status = 1
+        where id in (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>
+        );
+    </update>
+    <!-- 用户登录服务 -->
+    <select id="selectUserInfoByAccount" parameterType="string" resultType="userInfo">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where account = #{account}
+          and status = 1;
+    </select>
+    <select id="checkUserInfo" parameterType="userInfo" resultType="integer">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where account = #{account}
+          and password = #{password}
+          and status = 1;
+    </select>
+    <!-- 通过id查询userInfo -->
+    <select id="selectUserInfoById" parameterType="integer" resultType="userInfo">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where id = #{id}
+          and status = 1;
+    </select>
+    <!-- 通过用户真实姓名查询用户信息 -->
+    <select id="selectUserInfoByRealName" parameterType="string" resultType="userInfo">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where realname = #{realname}
+          and status = 1;
+    </select>
+    <!-- 管理员查询所有正常用户 -->
+    <select id="selectNormalUserInfo" resultType="userInfo">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where status = 1;
+    </select>
+    <!-- 管理员查询所有已注销用户 -->
+    <select id="selectAbnormalUserInfo" resultType="userInfo">
+        select id,
+               account,
+               password,
+               realname,
+               sex,
+               telephone,
+               IDCard,
+               birthPlace,
+               address,
+               creditGrade,
+               status
+        from userinfo
+        where status = 0;
+    </select>
+    <!-- 管理员通过条件查询所有正常用户 -->
+    <select id="selectNormalUserInfoBySearch" resultType="userInfo">
+        select *
+        from userinfo
+        <where>
+            <if test="sex != null">
+                and sex=
+                #{sex}
+            </if>
+            <if test="birthPlace != null and birthPlace !=''">
+                and birthPlace like concat('%',
+                #{birthPlace},
+                '%'
+                )
+            </if>
+            <if test="grade_min != 0 and grade_min != null">
+                and creditGrade &gt;=
+                #{grade_min}
+            </if>
+            <if test="grade_max != 0 and grade_max != null">
+                and creditGrade &lt;=
+                #{grade_max}
+            </if>
+            and status = 1
+        </where>
+        ;
+    </select>
+    <!-- 管理员通过条件查询所有正常用户 -->
+    <select id="selectAbnormalUserInfoBySearch" resultType="userInfo">
+        select *
+        from userinfo
+        <where>
+            <if test="sex != null">
+                and sex=
+                #{sex}
+            </if>
+            <if test="birthPlace != null and birthPlace !=''">
+                and birthPlace like concat('%',
+                #{birthPlace},
+                '%'
+                )
+            </if>
+            <if test="grade_min != 0 and grade_min != null">
+                and creditGrade &gt;=
+                #{grade_min}
+            </if>
+            <if test="grade_max != 0 and grade_max != null">
+                and creditGrade &lt;=
+                #{grade_max}
+            </if>
+            and status = 0
+        </where>
+        ;
+    </select>
+</mapper>

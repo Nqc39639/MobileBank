@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.AdminInfoMapper">
+    <!--    <resultMap id="tUsersResultMap" type="com.mobileBank.pojo.AdminInfoController">-->
+    <!--        <result column="user_name" property="user_name" />-->
+    <!--    </resultMap>-->
+
+    <!-- 用户修改个人信息服务 -->
+    <update id="updateAdminInfo">
+        update admininfo
+        <set>
+            <if test="account != '' and account != null">account
+            =
+            #{account},
+            </if>
+            <if test="password != '' and password != null">password
+            =
+            #{password},
+            </if>
+            <if test="realname != '' and realname != null">realname
+            =
+            #{realname},
+            </if>
+        </set>
+        where id=#{id};
+    </update>
+    <!-- 用户注销服务【伪删除】 -->
+    <delete id="deleteAdminInfo">
+        <!-- delete from admininfo where id in ( -->
+        <!-- <foreach collection="ids" item="id" separator=","> -->
+        <!--     #{id} -->
+        <!-- </foreach>); -->
+    </delete>
+    <!-- 用户登录服务 -->
+    <select id="selectAdminInfoByAccount" parameterType="string" resultType="adminInfo">
+        select id,
+               account,
+               password,
+               realname
+        from admininfo
+        where account = #{account}
+    </select>
+    <select id="checkAdminInfo" parameterType="adminInfo" resultType="integer">
+        select id,
+               account,
+               password,
+               realname
+        from admininfo
+        where account = #{account}
+          and password = #{password}
+    </select>
+    <!-- 通过id查询adminInfo -->
+    <select id="selectAdminInfoById" parameterType="integer" resultType="adminInfo">
+        select id,
+               account,
+               password,
+               realname
+        from admininfo
+        where id = #{id};
+    </select>
+</mapper>

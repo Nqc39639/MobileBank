@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mobileBank.mapper.TransferInfoMapper">
+    <select id="selectTransferInfoByPayAccountIdAndDateRange" resultType="transferInfo">
+        select id,
+               payAccountId,
+               targetPayAccountId,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from transferinfo
+        where payAccountId = #{payAccountId}
+          and payDate between #{startDate} and #{endDate};
+    </select>
+    <select id="selectTransferInfoByTargetPayAccountIdAndDateRange" resultType="transferInfo">
+        select id,
+               payAccountId,
+               targetPayAccountId,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from transferinfo
+        where targetPayAccountId = #{targetPayAccountId}
+          and payDate between #{startDate} and #{endDate};
+    </select>
+    <select id="selectRecipients" resultType="map">
+        select transfer.payDate,   -- 转账日期
+               payee.id,           -- 转账对象的账户ID
+               payeeUser.realname, -- 转账对象的姓名
+               payee.bankCardID    -- 转账对象的银行卡号
+        from transferinfo transfer
+                 join
+             payaccountinfo payee on payee.id = transfer.targetPayAccountId -- 转账对象的账户信息
+                 join
+             userinfo payeeUser on payeeUser.id = payee.userId -- 转账对象的用户信息
+                 join
+             payaccountinfo pay on pay.id = transfer.payAccountId -- 转账信息
+                 join
+             userinfo payUser on payUser.id = pay.userId -- 转账账户的用户信息
+        where payUser.id = #{id};
+    </select>
+    <select id="selectTransferInfoByPayAccountId" resultType="transferInfo">
+        select id,
+               payAccountId,
+               targetPayAccountId,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from transferinfo
+        where payAccountId = #{payAccountId}
+          and status = 1;
+    </select>
+    <select id="selectTransferInfoByTargetPayAccountId" resultType="transferInfo">
+        select id,
+               payAccountId,
+               targetPayAccountId,
+               money,
+               orderNumber,
+               payDate,
+               status
+        from transferinfo
+        where targetPayAccountId = #{targetPayAccountId}
+          and status = 1;
+    </select>
+    <insert id="addTransferInfo" useGeneratedKeys="true" keyProperty="id">
+        insert into transferinfo(payAccountId, targetPayAccountId, money, orderNumber, payDate, status)
+            value (#{payAccountId}, #{targetPayAccountId}, #{money}, #{orderNumber}, #{payDate}, 1);
+    </insert>
+</mapper>
